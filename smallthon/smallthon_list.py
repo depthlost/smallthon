@@ -72,3 +72,30 @@ def all_satisfy(self, function):
         if not function(each):
             return False
     return True
+
+def intersect(self, elements):
+    return [ each for each in self if each in elements ]
+
+def diff(self, elements):
+    return [ each for each in self if each not in elements ]
+
+def match_any(self, elements, function):
+    result = []
+    for each1 in self:
+        for each2 in elements:
+            if function(each1, each2):
+                result.append(each1)
+                break
+
+    return result
+
+def match_all(self, elements, function):
+    result = []
+    for each1 in self:
+        for each2 in elements:
+            if not function(each1, each2):
+                break
+        else:
+            result.append(each1)        
+
+    return result
