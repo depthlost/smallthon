@@ -1,3 +1,4 @@
+
 def first(self):
     return self[0]
     
@@ -99,3 +100,15 @@ def match_all(self, elements, function):
             result.append(each1)        
 
     return result
+
+def if_(self, if_, function, else_=None):
+    if if_:
+        return function(self)
+    elif else_:
+        return else_(self)
+    return self
+
+def as_string(self, function, format_for_each="{}", separated_by="", global_format="{}"):
+    return global_format.format(
+        separated_by.join(self.collect(lambda each: format_for_each.format(function(each))))
+    )
