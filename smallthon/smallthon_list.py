@@ -101,12 +101,19 @@ def match_all(self, elements, function):
 
     return result
 
-def if_(self, if_, function, else_=None):
+def if_(self, if_, function, else_=None, return_self=False):
+    
     if if_:
-        return function(self)
+        result = function(self)
     elif else_:
-        return else_(self)
-    return self
+        result = else_(self)
+    else:
+        return self
+
+    if return_self:
+        result = self
+
+    return result
 
 def as_string(self, function, format_for_each="{}", separated_by="", global_format="{}"):
     return global_format.format(
